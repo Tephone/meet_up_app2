@@ -9,4 +9,17 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    - if !admin_signed_in? && !student_signed_in? && !teacher_signed_in?
+      = link_to 'ログイン（管理者）', new_admin_session_path
+      = link_to 'ログイン（生徒）', new_student_session_path
+      = link_to 'ログイン（講師）', new_teacher_session_path
+
+    - if admin_signed_in?
+      = link_to 'ログアウト（管理者）', destroy_admin_session_path, method: :delete
+    - if student_signed_in?
+      = link_to 'ログアウト（生徒）', destroy_student_session_path, method: :delete
+    - if teacher_signed_in?
+      = link_to 'ログアウト（講師）', destroy_teacher_session_path, method: :delete
+    = notice
+    = alert
     = yield
