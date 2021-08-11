@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       get :home
     end
   end
+  resources :lessons, only: %i[new create]
+  resources :lesson_reservations, only: %i[create destroy]
+  resources :purchase_tickets, only: %i[new create]
 end
