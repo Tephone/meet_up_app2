@@ -3,6 +3,7 @@ class TeachersController < ApplicationController
   end
 
   def index
+    @lessons = current_teacher.lessons.page(params[:page])
   end
 
   def new
@@ -19,6 +20,7 @@ class TeachersController < ApplicationController
   end
 
   def show
+    @teacher = current_teacher
   end
 
   def destroy

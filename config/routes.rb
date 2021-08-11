@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_scope :admin do
+    post 'admins/login_as_teachers', to: 'admins/sessions#login_as_teachers', as: :admin_login_as_teachers
+  end
+
   devise_for :students, controllers: { sessions: 'students/sessions', registrations: 'students/registrations' }
   devise_for :teachers, controllers: { sessions: 'teachers/sessions' }
   devise_scope :teacher do
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
       get :home
     end
   end
-  resources :lessons, only: %i[new create]
+  resources :lessons, only: %i[new create destroy]
   resources :lesson_reservations, only: %i[create destroy]
   resources :purchase_tickets, only: %i[new create]
 end

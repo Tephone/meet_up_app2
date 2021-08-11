@@ -3,5 +3,6 @@ class Teacher < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
+  belongs_to :language
   has_many :lessons, dependent: :destroy
 end

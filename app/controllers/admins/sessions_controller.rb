@@ -18,6 +18,12 @@ class Admins::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  def login_as_teachers
+    @teacher = Teacher.find(params[:id])
+    sign_in @teacher
+    redirect_to teachers_path, notice: "#{@teacher.name}先生としてログインしました"
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.

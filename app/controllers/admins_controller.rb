@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
   def show
-    @teachers = Teacher.all
+    @teachers = Teacher.all.page(params[:page])
   end
 end

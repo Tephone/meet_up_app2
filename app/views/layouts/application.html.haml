@@ -15,6 +15,7 @@
       = link_to 'ログイン（講師）', new_teacher_session_path
 
     - if admin_signed_in?
+      = link_to '講師一覧（管理者）', admin_path
       = link_to 'ログアウト（管理者）', destroy_admin_session_path, method: :delete
     - if student_signed_in?
       = link_to 'ログアウト（生徒）', destroy_student_session_path, method: :delete
