@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {sessions: 'admins/sessions'}
-  devise_for :students, controllers: {sessions: 'students/sessions', registrations: 'students/registrations'}
-  devise_for :teachers, controllers: {sessions: 'teachers/sessions'}
+  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :students, controllers: { sessions: 'students/sessions', registrations: 'students/registrations' }
+  devise_for :teachers, controllers: { sessions: 'teachers/sessions' }
   devise_scope :teacher do
     get 'teachers/edit', to: 'teachers/registrations#edit', as: :edit_teacher_registration
     put 'teachers/(.:format)', to: 'teachers/registrations#update', as: :teacher_registration

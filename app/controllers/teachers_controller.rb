@@ -8,7 +8,7 @@ class TeachersController < ApplicationController
   def new
   end
 
-  def create 
+  def create
   end
 
   def show
