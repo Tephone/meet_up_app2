@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :home
     end
   end
-  resources :teachers do
+  resources :teachers, except: %i[edit update] do
     collection do
       get :home
     end
