@@ -1,2 +1,4 @@
-%h1 PurchaseTickets#new
-%p Find me in app/views/purchase_tickets/index.html.haml
+%h2 チケット購入画面
+= form_with(model: @purchase_ticket) do |f|
+  = f.text_field :ticket_id
+  = f.submit '購入'

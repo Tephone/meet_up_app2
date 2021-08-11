@@ -18,6 +18,9 @@
       = link_to '講師一覧（管理者）', admin_path
       = link_to 'ログアウト（管理者）', destroy_admin_session_path, method: :delete
     - if student_signed_in?
+      = link_to 'ホーム（生徒）', home_students_path
+      = link_to 'マイレッスン（生徒）', students_path
+      = link_to 'マイページ（生徒）', student_path(current_student)
       = link_to 'ログアウト（生徒）', destroy_student_session_path, method: :delete
     - if teacher_signed_in?
       = link_to 'マイレッスン（講師）', teachers_path

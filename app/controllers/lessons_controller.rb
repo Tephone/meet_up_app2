@@ -12,6 +12,9 @@ class LessonsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def destroy
     @lesson = current_teacher.lessons.find(params[:id])
     @lesson.destroy!
