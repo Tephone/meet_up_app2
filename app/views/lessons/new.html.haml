@@ -1,2 +1,5 @@
-%h1 Lessons#new
-%p Find me in app/views/lessons/new.html.haml
+%h2 レッスン作成画面
+%p レッスン開始日時を指定してください
+= form_with(model: @lesson) do |f|
+  = f.datetime_field :started_at
+  = f.submit

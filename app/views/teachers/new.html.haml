@@ -1,2 +1,24 @@
-%h1 Teachers#new
-%p Find me in app/views/teachers/new.html.haml
+%h2 講師作成画面
+= form_with(model: @teacher) do |f|
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name, autocomplete: "name"
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email, autocomplete: "email"
+  .field
+    = f.label :language_id
+    %br
+    = f.text_field :language_id, autocomplete: "language_id"
+  .field
+    = f.label :password
+    %br
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation
+    %br
+    = f.submit

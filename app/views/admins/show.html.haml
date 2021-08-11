@@ -1,2 +1,6 @@
-%h1 Admins#show
-%p Find me in app/views/admins/index.html.haml
+%h2 講師一覧画面
+- @teachers.each do |teacher|
+  %p
+    #{teacher.name}先生
+    = link_to '削除', teacher_path(teacher), method: :delete
+= link_to '講師作成', new_teacher_path
