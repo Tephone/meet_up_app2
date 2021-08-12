@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
     if @lesson.save
       redirect_to teachers_path, notice: 'レッスンを作成しました'
     else
-      rendert :new
+      render :new
     end
   end
 

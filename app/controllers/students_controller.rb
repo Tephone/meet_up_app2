@@ -1,6 +1,8 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_student!
+  
   def home
-    @lessons = Lesson.where.not(id: LessonReservation.pluck(:lesson_id)).after_today.page(params[:page])
+    @lessons = Lesson.where.not(id: LessonReservation.select(:lesson_id)).after_today.page(params[:page])
     if params[:teacher_name].present?
       @lessons = @lessons.joins(:teacher).search_by_teacher_name(params[:teacher_name]).page(params[:page])
     end
@@ -13,7 +15,7 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @lessons = current_student.lessons.page(params[:page])
+    @lessons = current_student.lessons.after_today.page(params[:page])
   end
 
   def show

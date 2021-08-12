@@ -1,7 +1,7 @@
 %h2 マイページ
 %p 名前：#{@teacher.name}
 %p Eメール：#{@teacher.email}
-%p 言語：#{@teacher.language.name}
+%p 言語：#{t(@teacher.language.name)}
 %p= "#{@teacher.profile}"
 %p= image_tag @teacher.image.url if @teacher.image.present?
 
