@@ -5,6 +5,8 @@ class LessonReservationsController < ApplicationController
       redirect_to home_students_path, notice: 'チケットを購入してください'
     else
       lesson_reservation.save!
+      NoticeMailer.reservation_notice_to_student(lesson_reservation.lesson).deliver_now
+      NoticeMailer.reservation_notice_to_teacher(lesson_reservation.lesson).deliver_now
       redirect_to home_students_path, notice: 'レッスンを予約しました'
     end
   end
