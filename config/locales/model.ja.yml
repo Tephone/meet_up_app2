@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      student: 生徒
+      teacher: 講師
+    attributes:
+      student:
+        name: 名前
+      teacher:
+        name: 名前
+        profile: プロフィール
+        language_id: 言語
+        image: 画像

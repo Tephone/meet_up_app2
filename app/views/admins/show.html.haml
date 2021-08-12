@@ -3,4 +3,6 @@
   %p
     #{teacher.name}先生
     = link_to '削除', teacher_path(teacher), method: :delete
+    = link_to '代理ログイン', admin_login_as_teachers_path(id: teacher), method: :post
 = link_to '講師作成', new_teacher_path
+= paginate @teachers

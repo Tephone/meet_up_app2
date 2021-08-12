@@ -1,2 +1,5 @@
-%h1 PurchaseTickets#new
-%p Find me in app/views/purchase_tickets/index.html.haml
+%h2 チケット購入画面
+- tickets_option = Ticket.all.map{ |ticket| ["#{ticket.fee}円 #{ticket.lesson_count}回分", ticket.id]}
+= form_with(model: @purchase_ticket) do |f|
+  = f.select :ticket_id, tickets_option, include_blank: '選択してください'
+  = f.submit '購入'

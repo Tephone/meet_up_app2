@@ -1,2 +1,9 @@
 %h2 作成したレッスン一覧
+- @lessons.each do |lesson|
+  %p 
+    #{l lesson.started_at}
+    = link_to '詳細', lesson_path(lesson) 
+    = link_to '削除', lesson_path(lesson), method: :delete 
+    = '※予約あり' if lesson.lesson_reservation.present?
 = link_to 'レッスン作成', new_lesson_path if !admin_signed_in?
+= paginate @lessons

@@ -1,3 +1,8 @@
-%h1 Teachers#show
-%p Find me in app/views/teachers/show.html.haml
+%h2 マイページ
+%p 名前：#{@teacher.name}
+%p Eメール：#{@teacher.email}
+%p 言語：#{t(@teacher.language.name)}
+%p= "#{@teacher.profile}"
+%p= image_tag @teacher.image.url if @teacher.image.present?
+
 = link_to '編集', edit_teacher_registration_path

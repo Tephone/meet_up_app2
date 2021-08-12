@@ -8,11 +8,18 @@ class LessonsController < ApplicationController
     if @lesson.save
       redirect_to teachers_path, notice: 'レッスンを作成しました'
     else
-      rendert :new
+      render :new
     end
   end
 
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
+
   def destroy
+    @lesson = current_teacher.lessons.find(params[:id])
+    @lesson.destroy!
+    redirect_to teachers_path, notice: '削除しました'
   end
 
   private
