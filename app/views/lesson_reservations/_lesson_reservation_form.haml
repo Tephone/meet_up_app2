@@ -4,4 +4,4 @@
 - else
   = form_with(model: current_student.lesson_reservations.new(lesson_id: lesson.id)) do |f|
     = f.hidden_field :lesson_id
-    = f.submit
+    = f.submit '予約する'

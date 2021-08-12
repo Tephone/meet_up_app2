@@ -1,14 +1,14 @@
 class StudentsController < ApplicationController
   def home
-    @lessons = Lesson.where.not(id: LessonReservation.pluck(:lesson_id)).page(params[:page])
-    if params[:teacher].present?
-      @lessons = @lessons.joins(:teacher).where('teachers.name LIKE ?', params[:teacher]).page(params[:page])
+    @lessons = Lesson.where.not(id: LessonReservation.pluck(:lesson_id)).after_today.page(params[:page])
+    if params[:teacher_name].present?
+      @lessons = @lessons.joins(:teacher).search_by_teacher_name(params[:teacher_name]).page(params[:page])
     end
-    if params[:language].present?
-      @lessons = @lessons.joins(teacher: :language).where('languages.id::text LIKE ?', params[:language]).page(params[:page])
+    if params[:language_id].present?
+      @lessons = @lessons.joins(teacher: :language).search_by_language_id(params[:language_id]).page(params[:page])
     end
     if params[:date].present?
-      @lessons = @lessons.where('started_at >= ? AND ? >= started_at', params[:date].in_time_zone.beginning_of_day, params[:date].in_time_zone.end_of_day).page(params[:page])
+      @lessons = @lessons.search_by_date(params[:date]).page(params[:page])
     end
   end
 
@@ -17,5 +17,6 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @student = current_student
   end
 end

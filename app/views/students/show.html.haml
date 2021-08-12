@@ -1,2 +1,6 @@
-%h1 Students#show
-%p Find me in app/views/students/show.html.haml
+%h2 マイページ
+%p 名前：#{@student.name}
+%p Eメール：#{@student.email}
+%p 予約可能数：#{@student.rest_of_lesson_count}
+
+= link_to '編集', edit_student_registration_path

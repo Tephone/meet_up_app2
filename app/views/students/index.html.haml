@@ -1,6 +1,8 @@
 %h2 予約済みレッスン一覧
 - @lessons.each do |lesson|
-  %p= l lesson.started_at
+  %p
+    = l lesson.started_at
+    = link_to '詳細', lesson_path(lesson)
   = render 'lesson_reservations/lesson_reservation_form', lesson: lesson
 = link_to 'チケット購入', new_purchase_ticket_path
 = paginate @lessons
