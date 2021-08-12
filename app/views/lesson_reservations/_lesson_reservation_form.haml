@@ -1,2 +1,7 @@
-%h1 LessonReservations#new
-%p Find me in app/views/lesson_reservations/index.html.haml
+- if current_student.lessons.include?(lesson)
+  - lesson_reservation = current_student.lesson_reservations.find_by(lesson_id: lesson.id)
+  = button_to '予約解除', lesson_reservation_path(lesson_reservation), method: :delete
+- else
+  = form_with(model: current_student.lesson_reservations.new(lesson_id: lesson.id)) do |f|
+    = f.hidden_field :lesson_id
+    = f.submit

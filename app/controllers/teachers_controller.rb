@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
   def home
+    @lessons = Lesson.where.not(id: LessonReservation.pluck(:lesson_id)).page(params[:page])
   end
 
   def index

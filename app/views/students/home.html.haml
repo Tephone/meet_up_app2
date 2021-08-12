@@ -1,2 +1,13 @@
-%h1 Students#home
-%p Find me in app/views/students/home.html.haml
+%h2 レッスン一覧
+
+= form_with(url: home_students_path, method: :get) do |f|
+  = f.search_field :teacher, placeholder: '--講師名--'
+  = f.search_field :language
+  = f.date_field :date
+  = f.submit '検索する'
+
+- @lessons.each do |lesson|
+  %p= l lesson.started_at
+  %p 講師: #{lesson.teacher.name} / 言語: #{lesson.teacher.language.name}
+  = render 'lesson_reservations/lesson_reservation_form', lesson: lesson
+= paginate @lessons
