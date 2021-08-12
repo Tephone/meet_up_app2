@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :authenticate_student!
-  
+
   def home
     @lessons = Lesson.where.not(id: LessonReservation.select(:lesson_id)).after_today.page(params[:page])
     if params[:teacher_name].present?

@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
-  before_action :authenticate_teacher!, except: %i[ new create destroy]
-  before_action :authenticate_admin!, only: %i[ new create destroy]
+  before_action :authenticate_teacher!, except: %i[new create destroy]
+  before_action :authenticate_admin!, only: %i[new create destroy]
 
   def home
   end
