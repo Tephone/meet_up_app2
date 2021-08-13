@@ -2,6 +2,7 @@ class Lesson < ApplicationRecord
   belongs_to :teacher
   has_one :lesson_reservation, dependent: :destroy
   has_one :student, through: :lesson_reservation, source: :student
+  has_one :review, dependent: :destroy
   validates :started_at, presence: true
 
   scope :after_today, -> { where('started_at >= ?', Time.zone.today) }

@@ -16,6 +16,19 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  def edit
+    @lesson = current_teacher.lessons.find(params[:id])
+  end
+
+  def update
+    lesson = current_teacher.lessons.find(params[:id])
+    if lesson.update(lesson_params)
+      redirect_to lesson_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @lesson = current_teacher.lessons.find(params[:id])
     @lesson.destroy!
@@ -25,6 +38,6 @@ class LessonsController < ApplicationController
   private
 
   def lesson_params
-    params.require(:lesson).permit(:started_at)
+    params.require(:lesson).permit %i[started_at overview]
   end
 end

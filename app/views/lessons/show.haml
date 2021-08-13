@@ -3,3 +3,8 @@
 %p 言語: #{t(@lesson.teacher.language.name)}
 %p zoom: #{@lesson.zoom_url}
 %p= "生徒名: #{@lesson.student.name}" if @lesson.student.present?
+%p --レッスン内容--
+%p= "#{@lesson.overview}" if @lesson.overview.present?
+-if current_teacher == @lesson.teacher && @lesson.student.present? && !admin_signed_in?
+  = link_to 'レビューを書く', new_review_path
+= link_to '編集', edit_lesson_path
