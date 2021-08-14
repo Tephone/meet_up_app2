@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   resources :lessons
   resources :lesson_reservations, only: %i[create destroy]
   resources :purchase_tickets, only: %i[new create]
-  resources :reviews, only: %i[new create destroy]
+  resources :reviews
 end

@@ -1,8 +1,13 @@
-%h2 予約済みレッスン一覧
+- if teacher_signed_in?
+  %h2 #{@student.name}さんの予約済みレッスン一覧
+- else
+  %h2 #{current_student.name}さんの予約済みレッスン一覧
+
 - @lessons.each do |lesson|
   %p
     = l lesson.started_at
     = link_to '詳細', lesson_path(lesson)
-  = render 'lesson_reservations/lesson_reservation_form', lesson: lesson
-= link_to 'チケット購入', new_purchase_ticket_path
+  - unless teacher_signed_in?  
+    = render 'lesson_reservations/lesson_reservation_form', lesson: lesson
+= link_to 'チケット購入', new_purchase_ticket_path if student_signed_in?
 = paginate @lessons
