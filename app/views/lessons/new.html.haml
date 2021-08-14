@@ -1,5 +1,9 @@
+- if @lesson.errors.present?
+  - @lesson.errors.full_messages. each do |msg|
+    = msg 
+
 %h2 レッスン作成画面
 %p レッスン開始日時を指定してください
 = form_with(model: @lesson) do |f|
-  = f.datetime_field :started_at, min: Date.today
+  = f.datetime_field :started_at, min: Time.zone.today
   = f.submit

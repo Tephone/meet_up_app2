@@ -3,6 +3,7 @@ ja:
     models:
       student: 生徒
       teacher: 講師
+      lesson: レッスン
     attributes:
       student:
         name: 名前
@@ -11,3 +12,5 @@ ja:
         profile: プロフィール
         language_id: 言語
         image: 画像
+      lesson:
+        started_at: 開始時刻
