@@ -5,7 +5,8 @@ class Lesson < ApplicationRecord
   has_one :review, dependent: :destroy
   validates :started_at, presence: true
   validate :started_at_should_be_after_now
-
+  
+  scope :finished, -> {where('started_at < ?', Time.zone.now)}
   scope :after_today, -> { where('started_at >= ?', Time.zone.now) }
   scope :search_by_teacher_name, ->(teacher_name) { where('teachers.name LIKE ?', teacher_name) }
   scope :search_by_language_id, ->(language_id) { where('languages.id::text LIKE ?', language_id) }
