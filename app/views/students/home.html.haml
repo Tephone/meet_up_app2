@@ -8,6 +8,8 @@
 
 - @lessons.each do |lesson|
   %p= l lesson.started_at
-  %p 講師: #{lesson.teacher.name} / 言語: #{t(lesson.teacher.language.name)}
+  %p 
+    講師: #{lesson.teacher.name} / 言語: 
+    = t("language.#{lesson.teacher.language.name}")
   = render 'lesson_reservations/lesson_reservation_form', lesson: lesson
 = paginate @lessons

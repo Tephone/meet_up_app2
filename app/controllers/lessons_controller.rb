@@ -16,15 +16,28 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
-  def destroy
+  def edit
     @lesson = current_teacher.lessons.find(params[:id])
-    @lesson.destroy!
+  end
+
+  def update
+    lesson = current_teacher.lessons.find(params[:id])
+    if lesson.update(lesson_params)
+      redirect_to lesson_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    lesson = current_teacher.lessons.find(params[:id])
+    lesson.destroy!
     redirect_to teachers_path, notice: '削除しました'
   end
 
   private
 
   def lesson_params
-    params.require(:lesson).permit(:started_at)
+    params.require(:lesson).permit %i[started_at overview]
   end
 end

@@ -1,5 +1,19 @@
 %p 開始時刻: #{l @lesson.started_at}
 %p 講師: #{@lesson.teacher.name}
-%p 言語: #{t(@lesson.teacher.language.name)}
+%p 
+  言語:
+  = t("language.#{@lesson.teacher.language.name}")
 %p zoom: #{@lesson.zoom_url}
-%p= "生徒名: #{@lesson.student.name}" if @lesson.student.present?
+-if @lesson.student.present? && teacher_signed_in?
+  %p
+    = link_to "生徒名: #{@lesson.student.name}", students_path(student: @lesson.student)
+-if @lesson.overview.present?
+  %p --レッスン内容--
+  %p= "#{@lesson.overview}"
+= link_to 'レッスンを編集する', edit_lesson_path if current_teacher == @lesson.teacher
+
+- if (current_teacher == @lesson.teacher || current_student == @lesson.student) #&& @lesson.started_at.past?
+  %p= link_to 'レビューを確認する', review_path(@lesson.review) if @lesson.review.present?
+
+-if current_teacher == @lesson.teacher && @lesson.student.present? && !admin_signed_in? && @lesson.started_at.past?
+  = link_to 'レビューを書く', new_review_path(lesson: @lesson) if @lesson.review.nil?

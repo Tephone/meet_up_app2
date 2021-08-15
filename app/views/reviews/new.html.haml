@@ -1,0 +1,5 @@
+%h3 レビューをかく
+= form_with(model: @review) do |f|
+  = f.hidden_field :lesson_id
+  %p= f.text_area :content, autofocus: true
+  = f.submit '投稿'

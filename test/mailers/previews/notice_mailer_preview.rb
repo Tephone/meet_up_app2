@@ -9,4 +9,9 @@ class NoticeMailerPreview < ActionMailer::Preview
     lesson = LessonReservation.last.lesson
     NoticeMailer.reservation_notice_to_teacher(lesson)
   end
+
+  def review_notice_to_student
+    review = Review.last
+    NoticeMailer.review_notice_to_student(review)
+  end
 end

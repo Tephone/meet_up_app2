@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_student!
+  before_action :authenticate_student!, except: [:index]
 
   def home
     @lessons = Lesson.where.not(id: LessonReservation.select(:lesson_id)).after_today.page(params[:page])
@@ -15,7 +15,19 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @lessons = current_student.lessons.after_today.page(params[:page])
+    if params[:student].present?
+      @student = Student.find(params[:student])
+      @lessons = @student.lessons.after_today.page(params[:page])
+      # teacherがstudent_indexにアクセスする場合、移行方法：teacherへログイン→teacher_indexから予約有のレッスン詳細へ→予約生徒名クリック
+      # 講師がレッスンを予約した生徒のレッスン履歴を見れるようにlinkをつなぎました
+    elsif params[:finish_lesson_for_student].present?
+      @lessons = current_student.lessons.finished.page(params[:page])
+    elsif params[:finish_lesson_for_teacher].present?
+      @student = Student.find(params[:finish_lesson_for_teacher])
+      @lessons = @student.lessons.finished.page(params[:page])
+    else
+      @lessons = current_student.lessons.after_today.page(params[:page])
+    end
   end
 
   def show

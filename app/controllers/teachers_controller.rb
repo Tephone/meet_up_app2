@@ -2,9 +2,6 @@ class TeachersController < ApplicationController
   before_action :authenticate_teacher!, except: %i[new create destroy]
   before_action :authenticate_admin!, only: %i[new create destroy]
 
-  def home
-  end
-
   def index
     @lessons = current_teacher.lessons.page(params[:page])
   end
@@ -14,8 +11,8 @@ class TeachersController < ApplicationController
   end
 
   def create
-    @teacher = Teacher.new(teacher_params)
-    if @teacher.save
+    teacher = Teacher.new(teacher_params)
+    if teacher.save
       redirect_to admin_path, notice: '講師を作成しました'
     else
       render :new
@@ -27,8 +24,8 @@ class TeachersController < ApplicationController
   end
 
   def destroy
-    @teacher = Teacher.find(params[:id])
-    @teacher.destroy!
+    teacher = Teacher.find(params[:id])
+    teacher.destroy!
     redirect_to admin_path, notice: '削除しました'
   end
 

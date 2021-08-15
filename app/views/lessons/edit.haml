@@ -1,0 +1,5 @@
+= form_with(model: @lesson) do |f|
+  %p= f.datetime_field :started_at, min: Date.today
+  %p ※以下レッスン内容
+  %p= f.text_area :overview
+  = f.submit
