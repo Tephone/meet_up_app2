@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
   end
 
   def index
-    if params[:student].present? 
+    if params[:student].present?
       @student = Student.find(params[:student])
       @lessons = @student.lessons.after_today.page(params[:page])
       # teacherがstudent_indexにアクセスする場合、移行方法：teacherへログイン→teacher_indexから予約有のレッスン詳細へ→予約生徒名クリック
