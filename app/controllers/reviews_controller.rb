@@ -8,8 +8,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    lesson = current_teacher.reviews.new(review_params)
-    if lesson.save
+    review = current_teacher.reviews.new(review_params)
+    if review.save
+      NoticeMailer.review_notice_to_student(review).deliver_now
       redirect_to teachers_path, notice: 'レビューしました'
     else
       render :new

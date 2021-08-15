@@ -4,8 +4,8 @@ class PurchaseTicketsController < ApplicationController
   end
 
   def create
-    @purchase_ticket = current_student.purchase_tickets.new(purchase_ticket_params)
-    if @purchase_ticket.save
+    purchase_ticket = current_student.purchase_tickets.new(purchase_ticket_params)
+    if purchase_ticket.save
       redirect_to students_path, notice: 'チケットを買いました'
     else
       render :new

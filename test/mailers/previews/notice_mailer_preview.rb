@@ -10,6 +10,8 @@ class NoticeMailerPreview < ActionMailer::Preview
     NoticeMailer.reservation_notice_to_teacher(lesson)
   end
 
-  def review_notice_to_student(lesson)
+  def review_notice_to_student
+    review = Review.last
+    NoticeMailer.review_notice_to_student(review)
   end
 end

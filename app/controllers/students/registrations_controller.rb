@@ -3,6 +3,7 @@
 class Students::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  after_action :create_purchase_ticket, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -59,4 +60,8 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def create_purchase_ticket
+    current_student.purchase_tickets.create(ticket_id: Ticket.first.id)
+  end
 end

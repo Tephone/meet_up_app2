@@ -11,8 +11,8 @@ class NoticeMailer < ApplicationMailer
     # 本来lesson.teacher.email等で送信先は指定すべきですが、今回はlocalのみのため適当なアドレスを指定しました
   end
 
-  def review_notice_to_student(lesson)
-    @lesson = lesson
-    mail 'example@example.com', subject: 'レビュー通知メール'
+  def review_notice_to_student(review)
+    @review = review
+    mail to: 'example@example.com', subject: 'レビュー通知メール'
   end
 end

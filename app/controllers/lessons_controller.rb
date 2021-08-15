@@ -30,8 +30,8 @@ class LessonsController < ApplicationController
   end
 
   def destroy
-    @lesson = current_teacher.lessons.find(params[:id])
-    @lesson.destroy!
+    lesson = current_teacher.lessons.find(params[:id])
+    lesson.destroy!
     redirect_to teachers_path, notice: '削除しました'
   end
 
