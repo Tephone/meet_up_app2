@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   resources :purchase_tickets, only: %i[new create]
   resources :reviews
   resource :reservation_rate_for_teacher, only: [:show]
+  resource :reservation_rate_for_time, only: [:show]
 end
