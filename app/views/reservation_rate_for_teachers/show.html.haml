@@ -1,0 +1,18 @@
+%h4 #{@today.month}月の講師毎の予約率
+
+%table
+  -# %tr
+  - @DAY.each do |day|
+    %th= day
+  %tr
+    - @calendar_date.each do |date|
+      - if date == @from && @from.wday == 0
+        %td
+          %p #{date.day}
+          %p --%
+      - else
+        - if date.wday == 0
+          %tr 
+        %td 
+          %p #{date.day}
+          %p --%

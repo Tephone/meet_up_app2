@@ -10,6 +10,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     - if !admin_signed_in? && !student_signed_in? && !teacher_signed_in?
+      = link_to 'TOP', top_path
       = link_to 'ログイン（管理者）', new_admin_session_path
       = link_to 'ログイン（生徒）', new_student_session_path
       = link_to 'ログイン（講師）', new_teacher_session_path
