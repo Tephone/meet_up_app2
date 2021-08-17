@@ -21,9 +21,9 @@ class LessonsController < ApplicationController
   end
 
   def update
-    lesson = current_teacher.lessons.find(params[:id])
-    if lesson.update(lesson_params)
-      redirect_to lesson_path
+    @lesson = current_teacher.lessons.find(params[:id])
+    if @lesson.update(lesson_params)
+      redirect_to lesson_path, notice: '更新しました'
     else
       render :edit
     end

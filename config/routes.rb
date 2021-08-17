@@ -18,7 +18,11 @@ Rails.application.routes.draw do
       get :home
     end
   end
-  resources :teachers, except: %i[edit update]
+  resources :teachers, except: %i[edit update] do
+    collection do
+      get :home
+    end
+  end
   resources :lessons
   resources :lesson_reservations, only: %i[create destroy]
   resources :purchase_tickets, only: %i[new create]

@@ -1,5 +1,7 @@
-%h4 #{@today.month}月の講師毎の予約率
-
+%h4 
+  #{@today.month}月の#{@teacher.name}先生予約率:
+  = reservation_rate_for_teacher_to_a_month(@teacher, @today)
+%p ※レッスンがない日は'--'で表示
 %table
   - @DAY.each do |day|
     %th= day
@@ -13,4 +15,4 @@
             %td 
         %td
           %p= date.day
-          %p --%
+          %p= reservation_rate_for_teacher_to_a_day(@teacher, date)

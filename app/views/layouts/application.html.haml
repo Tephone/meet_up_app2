@@ -11,6 +11,7 @@
   %body
     - if !admin_signed_in? && !student_signed_in? && !teacher_signed_in?
       = link_to 'TOP', top_path
+      = link_to '講師一覧', home_teachers_path
       = link_to 'ログイン（管理者）', new_admin_session_path
       = link_to 'ログイン（生徒）', new_student_session_path
       = link_to 'ログイン（講師）', new_teacher_session_path
@@ -24,6 +25,7 @@
       = link_to 'マイページ（生徒）', student_path(current_student)
       = link_to 'ログアウト（生徒）', destroy_student_session_path, method: :delete
     - if teacher_signed_in?
+      = link_to '講師一覧', home_teachers_path
       = link_to 'マイレッスン（講師）', teachers_path
       = link_to 'マイページ（講師）', teacher_path(current_teacher)
       = link_to 'ログアウト（講師）', destroy_teacher_session_path, method: :delete

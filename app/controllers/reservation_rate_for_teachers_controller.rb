@@ -1,5 +1,6 @@
 class ReservationRateForTeachersController < ApplicationController
   def show
+    @teacher = Teacher.find(params[:teacher])
     @today = Date.today
     @from = @today.beginning_of_month
     to = @today.end_of_month
