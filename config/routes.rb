@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   resources :reviews
   resource :reservation_rate_for_teacher, only: [:show]
   resource :reservation_rate_for_time, only: [:show]
+  resource :reservation_rate_for_language, only: [:show]
+  resource :language, only: [:show]
 end
