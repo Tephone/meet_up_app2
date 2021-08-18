@@ -1,5 +1,6 @@
 %h4 講師一覧
 - @teachers.each do |teacher|
-  = teacher.name
-  = link_to '予約率', reservation_rate_for_teacher_path(teacher: teacher)
+  %p
+    = teacher.name
+    = link_to '予約率', reservation_rate_for_teacher_path(teacher: teacher)
 = paginate @teachers
