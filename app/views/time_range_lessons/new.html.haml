@@ -1,0 +1,10 @@
+%h2 レッスン範囲指定複数登録画面
+%p ※日付と時間範囲を指定してくだい
+- time_range = (7..22).to_a.freeze
+= form_with(url: time_range_lessons_path) do |f|
+  = f.date_field :date, min: Time.zone.today
+  = f.select :start, time_range
+  = '時〜'
+  = f.select :finish, time_range
+  = '時'
+  = f.submit

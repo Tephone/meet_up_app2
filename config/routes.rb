@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
   resources :lessons
+  resources :multiple_lessons, only: %i[new create]
+  resources :time_range_lessons, only: %i[new create]
   resources :lesson_reservations, only: %i[create destroy]
   resources :purchase_tickets, only: %i[new create]
   resources :reviews

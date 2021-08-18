@@ -6,4 +6,5 @@
     = link_to '削除', lesson_path(lesson), method: :delete 
     = '※予約あり' if lesson.lesson_reservation.present?
 = link_to 'レッスン作成', new_lesson_path if !admin_signed_in?
+
 = paginate @lessons
