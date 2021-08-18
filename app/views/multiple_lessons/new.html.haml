@@ -1,0 +1,7 @@
+%h2 レッスン複数同時作成画面
+%p レッスン開始日時を指定してください
+-# formには一つしかモデルもてない、Lessonは複数同時登録にnewできるようなデータ構造になってないから使えない
+= form_with(url: multiple_lessons_path) do |f|
+  - 3.times do
+    = f.datetime_field 'multiple_lesson[started_at][]', min: Time.zone.today
+  = f.submit

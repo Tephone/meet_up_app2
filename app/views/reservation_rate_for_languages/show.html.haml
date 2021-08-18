@@ -1,0 +1,19 @@
+%h2
+  #{@today.month}月の
+  = t("language.#{@language.name}") + '予約率:'
+  = reservation_rate_for_language_to_a_month(@language, @today)
+%p ※レッスンがない場合は'--'で表示
+
+%table
+  - @DAY.each do |day|
+    %th= day
+  - @calender_for_week.each do |week|
+    %tr
+      - week.each do |date|
+        - if date == @from
+          - date.wday.times do
+            %td
+        %td
+          %p
+            %p= date.day
+            %p= reservation_rate_for_language_to_a_day(@language, date)

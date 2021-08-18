@@ -1,0 +1,6 @@
+%h2 言語一覧
+- @languages.each do |language|
+  %p
+  = t("language.#{language.name}")
+  = link_to '予約率', reservation_rate_for_language_path(language: language)
+= paginate @languages

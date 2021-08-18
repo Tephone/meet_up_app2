@@ -1,0 +1,17 @@
+%h4 
+  #{@today.month}月の#{@teacher.name}先生予約率:
+  = reservation_rate_for_teacher_to_a_month(@teacher, @today)
+%p ※レッスンがない日は'--'で表示
+%table
+  - @DAY.each do |day|
+    %th= day
+  - @calendar_date_for_week.each do |week|
+    %tr
+      - week.each do |date|
+        - if date == @from #もし月初の１日目だった場合
+          -# 日付けを右詰めにするための処理day_of_weekの数分、空の%tdをいれる、ex)火曜だと2なので2こ空の%td入れる
+          - date.wday.times do
+            %td 
+        %td
+          %p= date.day
+          %p= reservation_rate_for_teacher_to_a_day(@teacher, date)
