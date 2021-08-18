@@ -1,4 +1,4 @@
-class MultipleLessonsController < ApplicationController  
+class MultipleLessonsController < ApplicationController
   def new
   end
 
